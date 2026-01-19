@@ -1,0 +1,348 @@
+@use '../styles/variables' as *;
+@use 'sass:color';
+
+// ===============================
+// PROFILE PAGE
+// ===============================
+
+.profile-page {
+    min-height: calc(100vh - 200px);
+    padding: $spacing-lg 0;
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 $spacing;
+    }
+
+    h1 {
+        font-size: $text-2xl;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0 0 $spacing-lg 0;
+    }
+}
+
+// ===============================
+// PROFILE INFO
+// ===============================
+
+.profile-info {
+    background: $background;
+    border: 1px solid $border;
+    border-radius: $radius;
+    padding: $spacing-lg;
+    margin-bottom: $spacing-lg;
+
+    h2 {
+        font-size: $text-xl;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0 0 $spacing 0;
+        padding-bottom: $spacing-sm;
+        border-bottom: 2px solid $border;
+    }
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-sm 0;
+    font-size: $text-base;
+
+    span:first-child {
+        color: $text-muted;
+        font-weight: 500;
+    }
+
+    span:last-child {
+        color: $text-primary;
+        font-weight: 600;
+    }
+}
+
+.role {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: $radius-sm;
+    font-size: $text-sm;
+    font-weight: 600;
+
+    &.role-admin {
+        background-color: rgba($primary, 0.1);
+        color: $primary;
+    }
+
+    &.role-user {
+        background-color: rgba($text-muted, 0.1);
+        color: $text-secondary;
+    }
+}
+
+// ===============================
+// ORDERS
+// ===============================
+
+.profile-orders {
+    background: $background;
+    border: 1px solid $border;
+    border-radius: $radius;
+    padding: $spacing-lg;
+}
+
+.orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing;
+    border-bottom: 2px solid $border;
+
+    h2 {
+        font-size: $text-xl;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $spacing-sm;
+    }
+}
+
+.status-filter {
+    padding: $spacing-xs $spacing-sm;
+    border: 1px solid $border;
+    border-radius: $radius-sm;
+    font-size: $text-sm;
+    color: $text-primary;
+    background: $background;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:focus {
+        outline: none;
+        border-color: $primary;
+        box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+}
+
+// ===============================
+// ORDERS LIST
+// ===============================
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing;
+}
+
+.order-card {
+    background: $background-secondary;
+    border: 1px solid $border;
+    border-radius: $radius;
+    padding: $spacing;
+    transition: all $transition-fast;
+
+    &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-color: $primary;
+    }
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-sm;
+    padding-bottom: $spacing-sm;
+    border-bottom: 1px solid $border;
+}
+
+.order-number {
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $text-muted;
+}
+
+.order-status {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    padding: 4px 12px;
+    border-radius: $radius-sm;
+    font-size: $text-sm;
+    font-weight: 600;
+
+    &.status-new {
+        background-color: rgba($info, 0.1);
+        color: $info;
+    }
+
+    &.status-confirmed {
+        background-color: rgba($success, 0.1);
+        color: $success;
+    }
+
+    &.status-assembled {
+        background-color: rgba($primary, 0.1);
+        color: $primary;
+    }
+
+    &.status-shipped {
+        background-color: rgba($primary, 0.2);
+        color: color.adjust($primary, $lightness: -20%);
+    }
+
+    &.status-delivered {
+        background-color: rgba($success, 0.2);
+        color: color.adjust($success, $lightness: -20%);
+    }
+
+    &.status-cancelled {
+        background-color: rgba($error, 0.1);
+        color: $error;
+    }
+}
+
+.order-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing;
+    margin-bottom: $spacing;
+
+    @media (max-width: $breakpoint-sm) {
+        grid-template-columns: 1fr;
+        gap: $spacing-xs;
+    }
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .label {
+        font-size: $text-sm;
+        color: $text-muted;
+    }
+
+    span:last-child {
+        font-size: $text-base;
+        font-weight: 600;
+        color: $text-primary;
+
+        &.price {
+            color: $primary;
+        }
+    }
+}
+
+.order-items-preview {
+    display: flex;
+    gap: $spacing-xs;
+    margin-bottom: $spacing;
+}
+
+.item-preview {
+    width: 50px;
+    height: 50px;
+    border-radius: $radius-sm;
+    overflow: hidden;
+    border: 1px solid $border;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.items-more {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $background;
+    border: 1px solid $border;
+    border-radius: $radius-sm;
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $text-muted;
+}
+
+.btn-view-order {
+    display: block;
+    width: 100%;
+    padding: $spacing-sm;
+    background: transparent;
+    color: $primary;
+    border: 1px solid $primary;
+    border-radius: $radius-sm;
+    font-size: $text-sm;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+        background-color: $primary;
+        color: white;
+    }
+}
+
+// ===============================
+// EMPTY STATE
+// ===============================
+
+.empty-orders {
+    text-align: center;
+    padding: $spacing-xl 0;
+
+    svg {
+        color: $text-muted;
+        margin-bottom: $spacing;
+    }
+
+    p {
+        font-size: $text-base;
+        color: $text-muted;
+        margin: 0 0 $spacing-lg 0;
+    }
+
+    .btn-primary {
+        display: inline-block;
+        padding: $spacing-sm $spacing-lg;
+        background-color: $primary;
+        color: white;
+        border: none;
+        border-radius: $radius;
+        font-size: $text-base;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:hover {
+            background-color: color.adjust($primary, $lightness: -10%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba($primary, 0.3);
+        }
+    }
+}
+
+// ===============================
+// LOADING
+// ===============================
+
+.loading {
+    text-align: center;
+    padding: $spacing-xl 0;
+    font-size: $text-lg;
+    color: $text-muted;
+}

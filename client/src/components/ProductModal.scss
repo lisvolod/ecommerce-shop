@@ -1,0 +1,100 @@
+@use '../styles/variables' as *;
+
+// ===============================
+// PRODUCT MODAL (WIDER)
+// ===============================
+
+.product-modal {
+    max-width: 600px;
+
+    .modal-body {
+        max-height: 70vh;
+    }
+}
+
+// ===============================
+// FORM ROW (TWO COLUMNS)
+// ===============================
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing;
+
+    @media (max-width: $breakpoint-sm) {
+        grid-template-columns: 1fr;
+    }
+}
+
+// ===============================
+// IMAGE INPUTS
+// ===============================
+
+.image-input-row {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-sm;
+    margin-bottom: $spacing;
+
+    input {
+        flex: 1;
+    }
+
+    .btn-delete-small {
+        margin-top: 2px;
+        padding: $spacing-xs;
+        background: none;
+        border: 1px solid $border;
+        border-radius: $radius-sm;
+        color: $error;
+        cursor: pointer;
+        transition: all $transition-fast;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        &:hover {
+            background-color: rgba($error, 0.1);
+            border-color: $error;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.image-preview {
+    width: 60px;
+    height: 60px;
+    border: 1px solid $border;
+    border-radius: $radius-sm;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: $background-secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none; // Hide until loaded
+    }
+}
+
+.btn-add-image {
+    width: 100%;
+    justify-content: center;
+    margin-top: $spacing-sm;
+}
+
+.form-hint {
+    display: block;
+    color: $text-muted;
+    font-size: $text-xs;
+    margin-top: $spacing-xs;
+}

@@ -1,0 +1,160 @@
+@use '../../styles/_variables.scss' as *;
+
+// ===============================
+// AUTH PAGES (Login & Register)
+// ===============================
+
+.auth-page {
+  min-height: calc(100vh - 4rem); // Віднімаємо висоту header
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-lg;
+
+  .auth-container {
+    width: 100%;
+    max-width: 420px;
+    background: $surface;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-lg;
+    padding: $spacing-2xl;
+
+    @media (max-width: $breakpoint-sm) {
+      padding: $spacing-lg;
+      box-shadow: none;
+    }
+  }
+
+  .auth-header {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+
+    h1 {
+      font-size: $text-3xl;
+      font-weight: $font-bold;
+      color: $text-primary;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      font-size: $text-sm;
+      color: $text-secondary;
+    }
+  }
+
+  // Форма
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-sm;
+
+      label {
+        font-size: $text-sm;
+        font-weight: $font-medium;
+        color: $text-secondary;
+      }
+
+      input {
+        padding: $spacing $spacing-md;
+        border: 1px solid $border;
+        border-radius: $radius-md;
+        font-size: $text-base;
+        transition: all $transition-fast;
+        background-color: $background;
+
+        &:focus {
+          outline: none;
+          border-color: $primary;
+          box-shadow: 0 0 0 3px rgba($primary, 0.1);
+        }
+
+        &::placeholder {
+          color: $text-muted;
+        }
+
+        &.error {
+          border-color: $error;
+        }
+      }
+
+      .error-message {
+        font-size: $text-xs;
+        color: $error;
+        margin-top: $spacing-xs;
+      }
+    }
+
+    // Кнопка submit
+    .submit-button {
+      width: 100%;
+      padding: $spacing $spacing-lg;
+      background-color: $primary;
+      color: $text-inverse;
+      border-radius: $radius-md;
+      font-size: $text-base;
+      font-weight: $font-semibold;
+      transition: all $transition-fast;
+      margin-top: $spacing;
+
+      &:hover {
+        background-color: $primary-dark;
+        transform: translateY(-1px);
+        box-shadow: $shadow-md;
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+    }
+  }
+
+  // Footer (перехід на іншу сторінку)
+  .auth-footer {
+    text-align: center;
+    margin-top: $spacing-xl;
+    font-size: $text-sm;
+    color: $text-secondary;
+
+    a {
+      color: $primary;
+      font-weight: $font-medium;
+      transition: color $transition-fast;
+
+      &:hover {
+        color: $primary-dark;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// ===============================
+// LOADING STATE
+// ===============================
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba($text-inverse, 0.3);
+  border-top-color: $text-inverse;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

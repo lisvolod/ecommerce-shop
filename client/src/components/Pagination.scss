@@ -1,0 +1,66 @@
+@use '../styles/variables' as *;
+
+// ===============================
+// PAGINATION
+// ===============================
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing;
+  padding: $spacing-lg 0;
+}
+
+.pagination-btn {
+  padding: $spacing-sm $spacing;
+  background-color: $background;
+  color: $text-primary;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  font-size: $text-sm;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-fast;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    color: white;
+    border-color: $primary;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.pagination-info {
+  font-size: $text-sm;
+  color: $text-muted;
+  padding: 0 $spacing;
+  white-space: nowrap;
+}
+
+// ===============================
+// RESPONSIVE
+// ===============================
+
+@media (max-width: $breakpoint-sm) {
+  .pagination {
+    gap: $spacing-sm;
+  }
+
+  .pagination-btn {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $text-xs;
+  }
+
+  .pagination-info {
+    font-size: $text-xs;
+    padding: 0 $spacing-sm;
+  }
+}

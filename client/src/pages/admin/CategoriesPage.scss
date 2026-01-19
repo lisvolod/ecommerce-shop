@@ -1,0 +1,220 @@
+@use '../../styles/variables' as *;
+
+// ===============================
+// EMPTY STATE
+// ===============================
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: calc($spacing-xl * 2) $spacing-xl;
+    background: $surface;
+    border-radius: $radius-lg;
+    border: 2px dashed $border;
+    text-align: center;
+
+    .empty-icon {
+        color: $text-muted;
+        margin-bottom: $spacing-lg;
+    }
+
+    h3 {
+        font-size: $text-xl;
+        font-weight: $font-bold;
+        color: $text-primary;
+        margin: 0 0 $spacing-sm 0;
+    }
+
+    p {
+        color: $text-secondary;
+        margin: 0 0 $spacing-xl 0;
+    }
+}
+
+// ===============================
+// TABLE CONTAINER
+// ===============================
+
+.table-container {
+    background: $surface;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    box-shadow: $shadow-sm;
+    border: 1px solid $border;
+}
+
+// ===============================
+// CATEGORIES TABLE
+// ===============================
+
+.categories-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        background-color: $background-secondary;
+
+        tr {
+            border-bottom: 1px solid $border;
+
+            th {
+                padding: $spacing $spacing-lg;
+                text-align: left;
+                font-size: $text-sm;
+                font-weight: $font-semibold;
+                color: $text-secondary;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+
+                &:last-child {
+                    text-align: right;
+                    padding-right: $spacing-xl;
+                }
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $border;
+            transition: background-color $transition-fast;
+
+            &:hover {
+                background-color: rgba($primary, 0.02);
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            td {
+                padding: $spacing-lg;
+                font-size: $text-base;
+                color: $text-primary;
+
+                &:last-child {
+                    text-align: right;
+                    padding-right: $spacing-xl;
+                }
+            }
+        }
+
+        .category-name {
+            display: flex;
+            align-items: center;
+            gap: $spacing-sm;
+            font-weight: $font-medium;
+
+            svg {
+                color: $primary;
+                flex-shrink: 0;
+            }
+        }
+
+        .category-description {
+            color: $text-secondary;
+            max-width: 400px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .category-count {
+            color: $text-secondary;
+            font-weight: $font-medium;
+        }
+
+        .category-actions {
+            display: flex;
+            gap: $spacing-xs;
+            justify-content: flex-end;
+
+            .btn-icon {
+                padding: $spacing-xs;
+                background: none;
+                border: 1px solid $border;
+                border-radius: $radius-sm;
+                cursor: pointer;
+                transition: all $transition-fast;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &.btn-edit {
+                    color: $primary;
+
+                    &:hover {
+                        background-color: rgba($primary, 0.1);
+                        border-color: $primary;
+                    }
+                }
+
+                &.btn-delete {
+                    color: $error;
+
+                    &:hover {
+                        background-color: rgba($error, 0.1);
+                        border-color: $error;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ===============================
+// RESPONSIVE
+// ===============================
+
+@media (max-width: $breakpoint-md) {
+    .categories-table {
+        thead {
+            th {
+                padding: $spacing-sm $spacing;
+                font-size: $text-xs;
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    padding: $spacing $spacing;
+                    font-size: $text-sm;
+                }
+            }
+
+            .category-description {
+                max-width: 200px;
+            }
+        }
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .categories-table {
+        min-width: 600px;
+    }
+
+    .empty-state {
+        padding: $spacing-xl $spacing;
+
+        .empty-icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        h3 {
+            font-size: $text-lg;
+        }
+
+        p {
+            font-size: $text-sm;
+        }
+    }
+}

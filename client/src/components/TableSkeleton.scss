@@ -1,0 +1,55 @@
+@use '../styles/variables' as *;
+@use 'sass:color';
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    $background-secondary 0%,
+    color.adjust($background-secondary, $lightness: 2%) 50%,
+    $background-secondary 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: $radius-sm;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-text {
+  height: 16px;
+  width: 80%;
+  margin: $spacing-xs 0;
+}
+
+.table-skeleton {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: $surface;
+    border-radius: $radius-lg;
+    overflow: hidden;
+
+    thead {
+      background-color: $background-secondary;
+
+      th {
+        padding: $spacing $spacing-lg;
+        text-align: left;
+      }
+    }
+
+    tbody {
+      td {
+        padding: $spacing-lg;
+        border-top: 1px solid $border;
+      }
+    }
+  }
+}

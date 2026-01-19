@@ -1,0 +1,308 @@
+@use '../styles/variables' as *;
+@use 'sass:color';
+
+// ===============================
+// CHECKOUT PAGE
+// ===============================
+
+.checkout-page {
+    min-height: calc(100vh - 200px);
+    padding: $spacing-lg 0;
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 $spacing;
+    }
+
+    h1 {
+        font-size: $text-2xl;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0 0 $spacing-lg 0;
+    }
+}
+
+// ===============================
+// LAYOUT
+// ===============================
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: $spacing-lg;
+    align-items: start;
+
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
+    }
+}
+
+// ===============================
+// FORM
+// ===============================
+
+.checkout-form {
+    background: $background;
+    border: 1px solid $border;
+    border-radius: $radius;
+    padding: $spacing-lg;
+
+    h2 {
+        font-size: $text-xl;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0 0 $spacing 0;
+        padding-bottom: $spacing-sm;
+        border-bottom: 2px solid $border;
+
+        &:not(:first-child) {
+            margin-top: $spacing-lg;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing;
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    label {
+        font-size: $text-sm;
+        font-weight: 600;
+        color: $text-primary;
+
+        .required {
+            color: $error;
+            margin-left: 2px;
+        }
+    }
+
+    input,
+    textarea {
+        padding: $spacing-sm $spacing;
+        border: 1px solid $border;
+        border-radius: $radius-sm;
+        font-size: $text-base;
+        color: $text-primary;
+        background: $background;
+        transition: all $transition-fast;
+
+        &:focus {
+            outline: none;
+            border-color: $primary;
+            box-shadow: 0 0 0 3px rgba($primary, 0.1);
+        }
+
+        &.error {
+            border-color: $error;
+
+            &:focus {
+                box-shadow: 0 0 0 3px rgba($error, 0.1);
+            }
+        }
+
+        &::placeholder {
+            color: $text-muted;
+        }
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+        font-family: inherit;
+    }
+}
+
+.error-message {
+    font-size: $text-sm;
+    color: $error;
+    margin-top: -4px;
+}
+
+.user-info {
+    padding: $spacing;
+    background: $background-secondary;
+    border-radius: $radius-sm;
+    margin-bottom: $spacing;
+
+    p {
+        margin: $spacing-xs 0;
+        font-size: $text-base;
+        color: $text-secondary;
+
+        strong {
+            color: $text-primary;
+            font-weight: 600;
+        }
+    }
+}
+
+.btn-submit {
+    width: 100%;
+    padding: $spacing $spacing-lg;
+    background-color: $primary;
+    color: white;
+    border: none;
+    border-radius: $radius;
+    font-size: $text-base;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all $transition-fast;
+    margin-top: $spacing;
+
+    &:hover:not(:disabled) {
+        background-color: color.adjust($primary, $lightness: -10%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba($primary, 0.3);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+// ===============================
+// SUMMARY
+// ===============================
+
+.checkout-summary {
+    position: sticky;
+    top: $spacing;
+    background: $background;
+    border: 1px solid $border;
+    border-radius: $radius;
+    padding: $spacing-lg;
+
+    h2 {
+        font-size: $text-xl;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0 0 $spacing 0;
+    }
+}
+
+.summary-items {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing;
+    margin-bottom: $spacing;
+}
+
+.summary-item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: $spacing-sm;
+    align-items: center;
+
+    img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: $radius-sm;
+    }
+}
+
+.item-details {
+    min-width: 0; // для ellipsis
+}
+
+.item-name {
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0 0 4px 0;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-quantity {
+    font-size: $text-sm;
+    color: $text-muted;
+    margin: 0;
+}
+
+.item-total {
+    font-size: $text-base;
+    font-weight: 700;
+    color: $primary;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.summary-divider {
+    height: 1px;
+    background-color: $border;
+    margin: $spacing 0;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: $spacing-xs 0;
+    font-size: $text-base;
+    color: $text-secondary;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    padding: $spacing 0;
+    font-size: $text-xl;
+    font-weight: 700;
+    color: $text-primary;
+}
+
+// ===============================
+// EMPTY STATE
+// ===============================
+
+.empty-checkout {
+    text-align: center;
+    padding: $spacing-xl 0;
+
+    h2 {
+        font-size: $text-2xl;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0 0 $spacing-sm 0;
+    }
+
+    p {
+        font-size: $text-base;
+        color: $text-muted;
+        margin: 0 0 $spacing-lg 0;
+    }
+
+    .btn-primary {
+        display: inline-block;
+        padding: $spacing-sm $spacing-lg;
+        background-color: $primary;
+        color: white;
+        border: none;
+        border-radius: $radius;
+        font-size: $text-base;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:hover {
+            background-color: color.adjust($primary, $lightness: -10%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba($primary, 0.3);
+        }
+    }
+}

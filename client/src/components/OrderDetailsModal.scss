@@ -1,0 +1,224 @@
+@use '../styles/variables' as *;
+@use 'sass:color';
+
+// ===============================
+// ORDER DETAILS MODAL
+// ===============================
+
+.order-details-modal {
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+}
+
+// ===============================
+// SECTIONS
+// ===============================
+
+.section {
+    h3 {
+        font-size: $text-lg;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0 0 $spacing-sm 0;
+        padding-bottom: $spacing-xs;
+        border-bottom: 2px solid $border;
+    }
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing;
+
+    @media (max-width: $breakpoint-sm) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .label {
+        font-size: $text-sm;
+        color: $text-muted;
+        font-weight: 500;
+    }
+
+    .value {
+        font-size: $text-base;
+        color: $text-primary;
+        font-weight: 600;
+        word-break: break-word;
+
+        &.total {
+            color: $primary;
+            font-size: $text-lg;
+        }
+    }
+}
+
+.status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: $radius-sm;
+    font-size: $text-sm;
+    font-weight: 600;
+
+    &.status-new {
+        background-color: rgba($info, 0.1);
+        color: $info;
+    }
+
+    &.status-confirmed {
+        background-color: rgba($success, 0.1);
+        color: $success;
+    }
+
+    &.status-assembled {
+        background-color: rgba($primary, 0.1);
+        color: $primary;
+    }
+
+    &.status-shipped {
+        background-color: rgba($primary, 0.2);
+        color: color.adjust($primary, $lightness: -20%);
+    }
+
+    &.status-delivered {
+        background-color: rgba($success, 0.2);
+        color: color.adjust($success, $lightness: -20%);
+    }
+
+    &.status-cancelled {
+        background-color: rgba($error, 0.1);
+        color: $error;
+    }
+}
+
+.comment {
+    padding: $spacing;
+    background: $background-secondary;
+    border-radius: $radius-sm;
+    color: $text-secondary;
+    white-space: pre-wrap;
+    font-size: $text-sm;
+}
+
+// ===============================
+// ITEMS LIST
+// ===============================
+
+.items-list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+}
+
+.order-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: $spacing;
+    align-items: center;
+    padding: $spacing;
+    background: $background-secondary;
+    border-radius: $radius-sm;
+
+    img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: $radius-sm;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        grid-template-columns: 60px 1fr;
+        grid-template-areas:
+            "image details"
+            "total total";
+
+        img {
+            width: 60px;
+            height: 60px;
+            grid-area: image;
+        }
+
+        .item-details {
+            grid-area: details;
+        }
+
+        .item-total {
+            grid-area: total;
+            text-align: left;
+            margin-top: $spacing-xs;
+        }
+    }
+}
+
+.item-details {
+    min-width: 0;
+}
+
+.item-name {
+    font-size: $text-base;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-meta {
+    font-size: $text-sm;
+    color: $text-muted;
+}
+
+.item-total {
+    font-size: $text-lg;
+    font-weight: 700;
+    color: $primary;
+    white-space: nowrap;
+}
+
+// ===============================
+// MODAL FOOTER
+// ===============================
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-sm;
+    padding-top: $spacing;
+    border-top: 1px solid $border;
+
+    .btn-close {
+        padding: $spacing-sm $spacing-lg;
+        background: transparent;
+        color: $text-primary;
+        border: 1px solid $border;
+        border-radius: $radius-sm;
+        font-size: $text-base;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:hover {
+            background-color: $background-secondary;
+            border-color: $primary;
+            color: $primary;
+        }
+    }
+}

@@ -1,0 +1,277 @@
+@use '../../styles/variables' as *;
+@use 'sass:color';
+
+// ===============================
+// ORDERS PAGE ADMIN
+// ===============================
+
+.orders-page-admin {
+    padding: $spacing-lg;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+
+    h1 {
+        font-size: $text-2xl;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $spacing;
+    }
+}
+
+.filters {
+    display: flex;
+    gap: $spacing-sm;
+}
+
+.status-filter {
+    padding: $spacing-xs $spacing-sm;
+    border: 1px solid $border;
+    border-radius: $radius-sm;
+    font-size: $text-sm;
+    color: $text-primary;
+    background: $background;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:focus {
+        outline: none;
+        border-color: $primary;
+        box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+}
+
+// ===============================
+// TABLE
+// ===============================
+
+.orders-table {
+    background: $background;
+    border: 1px solid $border;
+    border-radius: $radius;
+    overflow: hidden;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: $background-secondary;
+
+        th {
+            padding: $spacing $spacing-sm;
+            text-align: left;
+            font-size: $text-sm;
+            font-weight: 600;
+            color: $text-muted;
+            border-bottom: 2px solid $border;
+            white-space: nowrap;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $border;
+            transition: background-color $transition-fast;
+
+            &:hover {
+                background-color: $background-secondary;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+
+        td {
+            padding: $spacing $spacing-sm;
+            font-size: $text-sm;
+            color: $text-primary;
+        }
+    }
+
+    @media (max-width: $breakpoint-md) {
+        overflow-x: auto;
+
+        table {
+            min-width: 800px;
+        }
+    }
+}
+
+.order-id {
+    font-family: monospace;
+    font-weight: 600;
+    color: $text-muted;
+}
+
+.order-date {
+    color: $text-secondary;
+    white-space: nowrap;
+}
+
+.order-customer {
+    .customer-name {
+        font-weight: 600;
+        color: $text-primary;
+        margin-bottom: 2px;
+    }
+
+    .customer-email {
+        font-size: $text-xs;
+        color: $text-muted;
+    }
+}
+
+.order-items {
+    text-align: center;
+    font-weight: 600;
+}
+
+.order-total {
+    font-weight: 700;
+    color: $primary;
+    white-space: nowrap;
+}
+
+.order-status {
+    .status-select {
+        padding: 4px 8px;
+        border: 1px solid $border;
+        border-radius: $radius-sm;
+        font-size: $text-xs;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba($primary, 0.1);
+        }
+
+        &.status-new {
+            background-color: rgba($info, 0.1);
+            color: $info;
+            border-color: $info;
+        }
+
+        &.status-confirmed {
+            background-color: rgba($success, 0.1);
+            color: $success;
+            border-color: $success;
+        }
+
+        &.status-assembled {
+            background-color: rgba($primary, 0.1);
+            color: $primary;
+            border-color: $primary;
+        }
+
+        &.status-shipped {
+            background-color: rgba($primary, 0.2);
+            color: color.adjust($primary, $lightness: -20%);
+            border-color: $primary;
+        }
+
+        &.status-delivered {
+            background-color: rgba($success, 0.2);
+            color: color.adjust($success, $lightness: -20%);
+            border-color: $success;
+        }
+
+        &.status-cancelled {
+            background-color: rgba($error, 0.1);
+            color: $error;
+            border-color: $error;
+        }
+    }
+}
+
+.order-actions {
+    display: flex;
+    gap: $spacing-xs;
+    white-space: nowrap;
+}
+
+.btn-action {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid $border;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &.btn-view {
+        color: $primary;
+
+        &:hover {
+            background-color: rgba($primary, 0.1);
+            border-color: $primary;
+        }
+    }
+
+    &.btn-delete {
+        color: $error;
+
+        &:hover {
+            background-color: rgba($error, 0.1);
+            border-color: $error;
+        }
+    }
+}
+
+// ===============================
+// EMPTY STATE
+// ===============================
+
+.empty-state {
+    text-align: center;
+    padding: $spacing-xl;
+    background: $background;
+    border: 1px solid $border;
+    border-radius: $radius;
+
+    svg {
+        color: $text-muted;
+        margin-bottom: $spacing;
+    }
+
+    h2 {
+        font-size: $text-xl;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0 0 $spacing-xs 0;
+    }
+
+    p {
+        font-size: $text-base;
+        color: $text-muted;
+        margin: 0;
+    }
+}
+
+// ===============================
+// LOADING
+// ===============================
+
+.loading {
+    text-align: center;
+    padding: $spacing-xl;
+    font-size: $text-lg;
+    color: $text-muted;
+}

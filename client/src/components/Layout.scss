@@ -1,0 +1,144 @@
+@use '../styles/variables' as *;
+@use 'sass:color';
+
+// ===============================
+// LAYOUT
+// ===============================
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// ===============================
+// HEADER
+// ===============================
+
+.header {
+  background-color: $background;
+  border-bottom: 1px solid $border;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 $spacing;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: $spacing-lg;
+  }
+
+  // Logo
+  .logo {
+    font-size: $text-xl;
+    font-weight: 700;
+    color: $primary;
+    text-decoration: none;
+    transition: color $transition-fast;
+    white-space: nowrap;
+
+    &:hover {
+      color: color.adjust($primary, $lightness: -10%);
+    }
+  }
+
+  // Navigation
+  nav {
+    display: flex;
+    align-items: center;
+    gap: $spacing;
+    flex-wrap: wrap;
+
+    @media (max-width: $breakpoint-sm) {
+      gap: $spacing-xs;
+    }
+
+    a, button {
+      display: flex;
+      align-items: center;
+      gap: $spacing-xs;
+      padding: $spacing-xs $spacing-sm;
+      border: none;
+      background: transparent;
+      border-radius: $radius-sm;
+      font-size: $text-sm;
+      font-weight: 600;
+      color: $text-secondary;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all $transition-fast;
+      white-space: nowrap;
+
+      &:hover {
+        color: $primary;
+        background-color: rgba($primary, 0.1);
+      }
+
+      svg {
+        flex-shrink: 0;
+      }
+
+      .nav-text {
+        @media (max-width: $breakpoint-md) {
+          display: none;
+        }
+      }
+    }
+
+    // Іконки з badge (wishlist, cart)
+    .icon-link {
+      position: relative;
+      padding: $spacing-xs;
+
+      .badge {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        min-width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $error;
+        color: white;
+        font-size: 10px;
+        font-weight: 700;
+        border-radius: 9px;
+        padding: 0 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    // Кнопка виходу - червона
+    button:last-child {
+      &:hover {
+        color: $error;
+        background-color: rgba($error, 0.1);
+      }
+    }
+  }
+}
+
+// ===============================
+// MAIN CONTENT
+// ===============================
+
+main {
+  flex: 1;
+  background-color: $background-secondary;
+  padding: $spacing-lg 0;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing 0;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $spacing-sm 0;
+  }
+}
